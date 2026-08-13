@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function Logout(Request $request)
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return response()->json([
+            'stat' => true,
+            'message' => "Log out success!"
+        ]);
+    }
+
     public function Login(Request $request)
     {
         $validated = $request->validate([
@@ -48,7 +61,7 @@ class UserController extends Controller
 
         return response()->json([
             'stat' => true,
-            'message' => "Login Success",
+            'message' => "Login Success!",
             'user' => $user->only('id', 'name', 'email')
         ]);
     }
