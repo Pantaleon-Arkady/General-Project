@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "../api/axios";
 
 function Login() {
     const [namemail, setNamemail] = useState("");
@@ -19,8 +20,17 @@ function Login() {
         console.log(loginData);
 
         try {
-        } catch (err) {
-            console.log(err.response);
+            await axios.get("/sanctum/csrf-cookie");
+            const res = await axios.post('/login', loginData);
+
+            if (res.data.stat) {
+                console.log("Stat true");
+            } else {
+                console.log("stat false but not catched error");
+            }
+        } catch (error) {
+            console.log(error.response);
+            console.log(error.response.statusText);
         }
     }
 
