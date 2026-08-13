@@ -1,17 +1,33 @@
 import { useState } from "react";
+import axios from "../api/axios";
 
 function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
+
+        const registrationData = {
+            username: username,
+            email: email,
+            password: password
+        };
+
+        console.log("Register");
+        console.log("Username: " + username);
+        console.log("Email: " + email);
+        console.log("Password: " + password);
+
         try {
-            console.log("Register");
-            console.log("Username: " + username);
-            console.log("Email: " + email);
-            console.log("Password: " + password);
+            await axios.get("/sanctum/csrf-cookie");
+            const res = await axios.post('/register', registrationData);
+            
+            if (res.data.stat) {
+                console.log(res.data.message);
+            }
+
         } catch (err) {
             console.log(err.response);
         }
