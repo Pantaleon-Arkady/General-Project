@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, Link } from 'react-router-dom';
 import './App.css';
 import Register from './forms/Register';
 import { useEffect, useState } from 'react';
@@ -10,8 +10,10 @@ function App() {
     useEffect(() => {
         if (location.pathname === "/register") {
             setIsRegister(true)
+        } else {
+            setIsRegister(false)
         }
-    }, [location.pathname])
+    }, [location])
 
     return (
         <>
@@ -21,10 +23,9 @@ function App() {
                         Current Location: {location.pathname}
                     </div>
                     <Outlet />
-                    <div className='border rounded'>
-                        {location.pathname === "/login" || "/" ? "Register ?" : "Login ?" }<br />
+                    <Link to={`${isRegister ? "/login" : "/register"}`} className='border rounded'>
                         {isRegister ? "Login ?" : "Register ?"}
-                    </div>
+                    </Link>
                 </div>
             </div>
         </>
