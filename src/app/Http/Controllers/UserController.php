@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,14 +31,25 @@ class UserController extends Controller
 
         if (!$user) {
             return response()->json([
-                'stat' => false
+                'stat' => false,
+                "message" => "Email / username cannot be found."
             ], 401);
         }
+
+        if (!Hash::check($validated['password'], $user->password)) {
+            return response()->json([
+                'stat' => false,
+                'message' => "Password does not match."
+            ], 401);
+        }
+
+        Auth::login($user);
+        $request->session()->regenerate();
 
         return response()->json([
             'stat' => true,
             'message' => "Login Success",
-            'user' => $loginInput
+            'user' => $user->only('id', 'name', 'email')
         ]);
     }
 
@@ -73,6 +85,9 @@ class UserController extends Controller
             'email' => $validated['email'],
             'password' => $validated['password']
         ]);
+
+        Auth::login($user);
+        $request->session()->regenerate();
 
         return response()->json([
             'stat' => true,

@@ -25,12 +25,13 @@ function Login() {
 
             if (res.data.stat) {
                 console.log("Stat true");
+                console.log(res.data.message);
             } else {
                 console.log("stat false but not catched error");
             }
         } catch (error) {
             console.log(error.response);
-            console.log(error.response.statusText);
+            console.log(error.response.statusText + ": " + error.response.data.message);
         }
     }
 
