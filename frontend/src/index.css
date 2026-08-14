@@ -5,8 +5,22 @@
     font-family: 'Space Mono', monospace;
 }
 
+.heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+    place-content: center;
+}
+
+.home_page_nav {
+    background-color: rgb(190, 190, 190);
+}
+
 @media (min-width: 901px) {
     .app_main_div {
+        padding: 15px;
+    }
+
+    .home_main_div {
         padding: 15px;
     }
 }
