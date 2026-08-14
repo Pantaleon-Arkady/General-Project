@@ -104,7 +104,7 @@ class UserController extends Controller
 
         return response()->json([
             'stat' => true,
-            'user' => $user,
+            'user' => $user->only('id', 'name', 'email'),
             'message' => "Registration Success!"
         ]);
     }

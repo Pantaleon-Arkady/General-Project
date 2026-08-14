@@ -1,10 +1,16 @@
-import { useState } from "react";
 import axios from "../api/axios";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { login } = useAuth();
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -26,6 +32,9 @@ function Register() {
             
             if (res.data.stat) {
                 console.log(res.data.message);
+
+                login(res.data.user);
+                navigate("/home");
             }
 
         } catch (err) {
