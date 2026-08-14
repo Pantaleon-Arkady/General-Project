@@ -1,11 +1,20 @@
-import { Outlet, useLocation, Link } from 'react-router-dom';
-import './App.css';
-import Register from './forms/Register';
+import { Outlet, useLocation, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAuth } from './context/AuthContext';
 
 function App() {
     const location = useLocation();
     const [isRegister, setIsRegister] = useState(false);
+
+    const { user } = useAuth();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate("/home");
+        }
+    }, [user])
     
     useEffect(() => {
         if (location.pathname === "/register") {
