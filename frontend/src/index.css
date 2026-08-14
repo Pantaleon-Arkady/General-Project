@@ -12,7 +12,22 @@
 }
 
 .home_page_nav {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     background-color: rgb(190, 190, 190);
+}
+
+.nav_left {
+    justify-self: start;
+}
+
+.nav_right {
+    justify-self: end;
+}
+
+.nav_mobile {
+    justify-self: center;
 }
 
 .nav_desktop {
@@ -33,6 +48,14 @@
     }
 
     .nav_desktop {
+        justify-self: center;
         display: block;
+    }
+
+    .nav_links {
+        all: unset;
+        border: 1px solid lightgray;
+        padding: 0px 20px;
+        overflow: auto;
     }
 }

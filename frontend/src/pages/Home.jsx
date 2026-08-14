@@ -23,19 +23,21 @@ function Home() {
         <>
             <div className="w-100 vh-100 home_main_div">
                 <div className="border rounded w-100 h-100">
-                    <div className="home_page_nav p-2 d-flex flex-row justify-content-between">
-                        <div className="heading">
+                    <div className="home_page_nav">
+                        <div className="heading nav_left">
                             Home Page
                         </div>
 
                         <NavButtons />
 
-                        <button
-                            onClick={() => handleLogout()}
-                            className="btn btn-danger"
-                        >
-                            Log out
-                        </button>
+                        <div className="nav_right">
+                            <button
+                                onClick={() => handleLogout()}
+                                className="btn btn-danger justify-self-end"
+                            >
+                                Log out
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
