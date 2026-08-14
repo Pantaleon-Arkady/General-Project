@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import NavButtons from "../components/NavButtons";
 
 function Home() {
     const { user, logout } = useAuth();
@@ -26,6 +27,8 @@ function Home() {
                         <div className="heading">
                             Home Page
                         </div>
+
+                        <NavButtons />
 
                         <button
                             onClick={() => handleLogout()}
