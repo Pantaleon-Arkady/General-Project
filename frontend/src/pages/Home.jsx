@@ -1,13 +1,12 @@
 import axios from "../api/axios";
+import { useAuth } from "../context/AuthContext";
 
 function Home() {
+    const { logout } = useAuth();
 
     const handleLogout = async () => {
-        try {
-            await axios.post("/logout", {}, { withCredentials: true });
-        } catch (error) {
-            console.log(error.response.statusText);
-        }
+        await logout();
+        navigate("/");
     }
 
     return (
