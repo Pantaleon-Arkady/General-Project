@@ -1,9 +1,15 @@
-import { useState } from "react";
 import axios from "../api/axios";
+import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [namemail, setNamemail] = useState("");
     const [password, setPassword] = useState("");
+
+    const { login } = useAuth();
+
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -26,6 +32,9 @@ function Login() {
             if (res.data.stat) {
                 console.log("Stat true");
                 console.log(res.data.message);
+
+                login(res.data.user);
+                navigate("/home");
             } else {
                 console.log("stat false but not catched error");
             }
