@@ -1,8 +1,17 @@
-import axios from "../api/axios";
+import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!user) {
+            navigate("/")
+        }
+    }, []);
 
     const handleLogout = async () => {
         await logout();
