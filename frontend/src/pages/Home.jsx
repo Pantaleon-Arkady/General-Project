@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import NavButtons from "../components/NavButtons";
 
 function Home() {
@@ -39,6 +39,7 @@ function Home() {
                             </button>
                         </div>
                     </div>
+                    <Outlet />
                 </div>
             </div>
         </>

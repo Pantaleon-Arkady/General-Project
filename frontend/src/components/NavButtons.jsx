@@ -12,7 +12,7 @@ function NavButtons() {
         <>
             <div className="nav_desktop">
                 {navItems.map((item, i) => (
-                    <Link className="nav_links" key={i} to={item.path}>
+                    <Link className="nav_links" key={i} to={"/home/" + item.path}>
                         {item.name}
                     </Link>
                 ))}
@@ -25,7 +25,7 @@ function NavButtons() {
 
                 <Dropdown.Menu>
                     {navItems.map((item, i) => (
-                        <Dropdown.Item key={i} href={item.path}>
+                        <Dropdown.Item key={i} as={Link} to={"/home" + item.path}>
                             {item.name}
                         </Dropdown.Item>
                     ))}
