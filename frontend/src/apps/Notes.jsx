@@ -20,7 +20,10 @@ function Notes() {
                 </div>
             </div>
 
-            {create && <CreateNotes />}
+            <CreateNotes
+                show={create}
+                onClose={() => setCreate(false)}
+            />
         </>
     )
 }
