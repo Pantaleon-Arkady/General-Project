@@ -5,6 +5,10 @@
     font-family: 'Space Mono', monospace;
 }
 
+:root {
+    --primary: rgb(10, 111, 253);
+}
+
 .heading {
     font-size: 1.5rem;
     font-weight: bold;
@@ -34,7 +38,7 @@
     display: none;
 }
 
-@media (min-width: 901px) {
+@media (min-width: 801px) {
     .app_main_div {
         padding: 15px;
     }
@@ -49,13 +53,17 @@
 
     .nav_desktop {
         justify-self: center;
-        display: block;
+        display: flex;
+        gap: 30px;
+        height: 100%;
     }
 
     .nav_links {
         all: unset;
-        border: 1px solid lightgray;
-        padding: 0px 20px;
-        overflow: auto;
+        display: block;
+        padding-top: 7px;
+        border-bottom: 3px solid var(--primary);
+        height: calc(100% - 10px);
+        cursor: pointer;
     }
 }

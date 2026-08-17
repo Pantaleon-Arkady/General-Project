@@ -10,7 +10,7 @@ function NavButtons() {
 
     return (
         <>
-            <div className="nav_desktop justify-self-center">
+            <div className="nav_desktop">
                 {navItems.map((item, i) => (
                     <Link className="nav_links" key={i} to={item.path}>
                         {item.name}
