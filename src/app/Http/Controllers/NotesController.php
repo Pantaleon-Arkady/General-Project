@@ -8,6 +8,29 @@ use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
 {
+    public function deleteNote(Request $request)
+    {
+        $validated = $request->validate([
+            'noteId' => ['required', 'integer']
+        ]);
+
+        $note = Notes::findOrFail($validated['noteId']);
+
+        if (!$note) {
+            return response()->json([
+                'stat' => false,
+                'Message' => "Deletion Failed, cannot delete a note that does not exist"
+            ]);
+        }
+
+        $note->delete();
+
+        return response()->json([
+            'stat' => true,
+            'Message' => "Deletion Success, deleted note with id: " . $validated['noteId']
+        ]);
+    }
+
     public function retrieveNotes(Request $request)
     {
         $validated = $request->validate([
