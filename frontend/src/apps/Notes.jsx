@@ -1,17 +1,38 @@
 import { useEffect, useState } from "react";
 import CreateNotes from "../forms/CreateNotes";
 import { useOutletContext } from "react-router-dom";
+import axios from "../api/axios";
 
 function Notes() {
     const [create, setCreate] = useState(false);
+    const [notes, setNotes] = useState({});
 
     const { user } = useOutletContext();
 
-    console.log('username: ' + user.name);
+    async function fetchNotes() {
+        const userId = user.id;
+
+        try {
+            const res = await axios.get('/retrieve-notes', {
+                params: {
+                    userId: user?.id
+                }
+            });
+
+            if (res.data.stat) {
+                setNotes(res.data.data);
+                console.log("Notes data retrieval: Success!");
+            }
+        } catch (err) {
+            console.log(err.response)
+        }
+    }
 
     useEffect(() => {
-
-    })
+        if (user) {
+            fetchNotes();
+        }
+    }, [user])
 
     return (
         <>
