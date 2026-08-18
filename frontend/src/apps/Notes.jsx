@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import CreateNotes from "../forms/CreateNotes";
 import { useOutletContext } from "react-router-dom";
 import axios from "../api/axios";
+import NotesList from "../components/NotesList";
 
 function Notes() {
     const [create, setCreate] = useState(false);
-    const [notes, setNotes] = useState({});
+    const [notes, setNotes] = useState([]);
 
     const { user } = useOutletContext();
 
@@ -20,7 +21,7 @@ function Notes() {
             });
 
             if (res.data.stat) {
-                setNotes(res.data.data);
+                setNotes(res.data.notes);
                 console.log("Notes data retrieval: Success!");
             }
         } catch (err) {
@@ -36,8 +37,8 @@ function Notes() {
 
     return (
         <>
-            <div className="border border-2 border-danger">
-                <div className="border border-2 border-primary d-flex justify-content-center p=1">
+            <div className="">
+                <div className="d-flex justify-content-center p=1">
                     <button 
                         className="btn btn-primary m-1"
                         onClick={() => setCreate(true)}
@@ -45,8 +46,10 @@ function Notes() {
                         Add Notes
                     </button>
                 </div>
-                <div className="p-2">
-                    Notes List Div
+                <div className="notes_list_main_div p-2 d-flex flex-column">
+                    <NotesList
+                        notes={notes}
+                    />
                 </div>
             </div>
 
