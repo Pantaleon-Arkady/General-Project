@@ -23,6 +23,7 @@ function NotesList({ notes, refresh }) {
 
             if (res.data.stat) {
                 console.log("Deletion success");
+                setDeleteWarning(false);
                 refresh();
             }
         } catch (err) {
