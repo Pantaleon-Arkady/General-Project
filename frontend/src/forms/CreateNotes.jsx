@@ -10,8 +10,19 @@ function CreateNotes({ show, onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const trimmedNote = note.trim();
+
+        if (!trimmedNote) {
+            return;
+        }
+
+        if (trimmedNote.length > 1000) {
+            return;
+        }
+
         const noteData = {
-            note: note,
+            note: trimmedNote,
             userId: user?.id
         }
 
