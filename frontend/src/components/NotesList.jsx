@@ -1,11 +1,19 @@
 import { useState } from "react";
 import DeleteWarning from "./DeleteWarning";
 import axios from "axios";
+import EditNotes from "../forms/EditNotes";
 
 function NotesList({ notes, refresh }) {
     const [deleteWarning, setDeleteWarning] = useState(false);
+    const [edit, setEdit] = useState(false);
     const [noteId, setNoteId] = useState("");
     const [note, setNote] = useState("");
+
+    const handleEdit = (noteId, note) => {
+        setEdit(true);
+        setNoteId(noteId);
+        setNote(note);
+    }
 
     const handleDeleteWarning = (noteId, note) => {
         setNoteId(noteId);
@@ -44,6 +52,12 @@ function NotesList({ notes, refresh }) {
 
                     <div>
                         <button
+                            onClick={() => handleEdit(note.id, note.note)}
+                            className="btn btn-primary mx-2"
+                        >
+                            Edit
+                        </button>
+                        <button
                             onClick={() => handleDeleteWarning(note.id, note.note)}
                             className="btn btn-danger"
                         >
@@ -61,6 +75,15 @@ function NotesList({ notes, refresh }) {
                     deleteName={note}
                     onDelete={() => handleDelete()}
                 /> 
+            }
+
+            { edit &&
+                <EditNotes
+                    show={edit}
+                    onClose={() => setEdit(false)}
+                    noteId={noteId}
+                    note={note}
+                />
             }
         </>
     )
