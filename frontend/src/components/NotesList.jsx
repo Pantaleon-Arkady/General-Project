@@ -1,4 +1,5 @@
 import { useState } from "react";
+import DeleteWarning from "./DeleteWarning";
 
 function NotesList({ notes }) {
     const [deleteWarning, setDeleteWarning] = useState(false);
@@ -40,6 +41,13 @@ function NotesList({ notes }) {
                     </div>
                 </div>
             ))}
+
+            { deleteWarning && 
+                <DeleteWarning
+                    deleteId={noteId}
+                    deleteName={note}
+                /> 
+            }
         </>
     )
 }
