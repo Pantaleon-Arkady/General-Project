@@ -22,8 +22,7 @@ function CreateNotes({ show, onClose }) {
         }
 
         const noteData = {
-            note: trimmedNote,
-            userId: user?.id
+            note: trimmedNote
         }
 
         console.log("Note Data:");
@@ -34,6 +33,7 @@ function CreateNotes({ show, onClose }) {
 
             if (res.data.stat) {
                 console.log(res.data.note);
+                onClose();
             }
         } catch (err) {
             console.log(err.response)

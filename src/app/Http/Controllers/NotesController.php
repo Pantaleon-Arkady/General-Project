@@ -10,13 +10,14 @@ class NotesController extends Controller
     public function createNote(Request $request)
     {
         $validated = $request->validate([
-            'note' => ['required', 'string'],
-            'userId' => ['required', 'integer']
+            'note' => ['required', 'string']
         ]);
+
+        $user = $request->user();
 
         $note = Notes::create([
             'note' => $validated['note'],
-            'user_id' => $validated['userId']
+            'user_id' => $user['id']
         ]);
 
         return response()->json([
