@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
-import { useAuth } from "../context/AuthContext";
 import axios from "../api/axios";
 
 function CreateNotes({ show, onClose }) {
     const [note, setNote] = useState("");
-
-    const { user } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

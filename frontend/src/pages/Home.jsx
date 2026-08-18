@@ -39,7 +39,7 @@ function Home() {
                             </button>
                         </div>
                     </div>
-                    <Outlet />
+                    <Outlet context={{ user }}/>
                 </div>
             </div>
         </>

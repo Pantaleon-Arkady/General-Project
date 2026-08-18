@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CreateNotes from "../forms/CreateNotes";
+import { useOutletContext } from "react-router-dom";
 
 function Notes() {
     const [create, setCreate] = useState(false);
+
+    const { user } = useOutletContext();
+
+    console.log('username: ' + user.name);
+
+    useEffect(() => {
+
+    })
 
     return (
         <>
