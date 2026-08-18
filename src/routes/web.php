@@ -7,6 +7,7 @@ use App\Http\Controllers\NotesController;
 
 // NOTES
 
+Route::get('/retrieve-notes', [NotesController::class, 'retrieveNotes']);
 Route::post('/create-note', [NotesController::class, 'createNote']);
 
 // USER

@@ -22,7 +22,8 @@ return [
         '/register',
         '/login',
         '/logout',
-        '/create-note'
+        '/create-note',
+        '/retrieve-notes'
     ],
 
     'allowed_methods' => ['*'],
