@@ -49,6 +49,7 @@ function Notes() {
                 <div className="notes_list_main_div p-2 d-flex flex-column">
                     <NotesList
                         notes={notes}
+                        refresh={fetchNotes}
                     />
                 </div>
             </div>
@@ -56,6 +57,7 @@ function Notes() {
             <CreateNotes
                 show={create}
                 onClose={() => setCreate(false)}
+                refresh={fetchNotes}
             />
         </>
     )

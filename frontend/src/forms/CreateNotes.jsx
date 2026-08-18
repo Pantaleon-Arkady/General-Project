@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import axios from "../api/axios";
 
-function CreateNotes({ show, onClose }) {
+function CreateNotes({ show, onClose, refresh }) {
     const [note, setNote] = useState("");
 
     const handleSubmit = async (e) => {
@@ -30,6 +30,7 @@ function CreateNotes({ show, onClose }) {
 
             if (res.data.stat) {
                 console.log(res.data.note);
+                refresh();
                 onClose();
             }
         } catch (err) {
