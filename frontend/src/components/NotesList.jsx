@@ -1,7 +1,8 @@
 import { useState } from "react";
 import DeleteWarning from "./DeleteWarning";
+import axios from "axios";
 
-function NotesList({ notes }) {
+function NotesList({ notes, refresh }) {
     const [deleteWarning, setDeleteWarning] = useState(false);
     const [noteId, setNoteId] = useState("");
     const [note, setNote] = useState("");
@@ -10,14 +11,23 @@ function NotesList({ notes }) {
         setNoteId(noteId);
         setNote(note);
         setDeleteWarning(true);
-
-        console.log("Deleting:");
-        console.log("id: " + noteId);
-        console.log("note: " + note);
     }
 
-    const handleDelete = () => {
+    const handleDelete = async() => {
+        console.log("Deleting:");
+        console.log(noteId);
+        console.log(note);
 
+        try {
+            const res = await axios.post('/delete-note', {noteId: noteId});
+
+            if (res.data.stat) {
+                console.log("Deletion success");
+                refresh();
+            }
+        } catch (err) {
+            console.log(err.response)
+        }
     }
 
     return (
@@ -44,8 +54,11 @@ function NotesList({ notes }) {
 
             { deleteWarning && 
                 <DeleteWarning
+                    show={deleteWarning}
+                    onClose={() => setDeleteWarning(false)}
                     deleteId={noteId}
                     deleteName={note}
+                    onDelete={() => handleDelete()}
                 /> 
             }
         </>
