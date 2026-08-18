@@ -21,7 +21,10 @@ return [
         '/handshake',
         '/register',
         '/login',
-        '/logout'
+        '/logout',
+        '/create-note',
+        '/retrieve-notes',
+        '/delete-note'
     ],
 
     'allowed_methods' => ['*'],
