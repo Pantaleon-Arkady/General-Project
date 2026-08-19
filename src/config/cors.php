@@ -24,7 +24,8 @@ return [
         '/logout',
         '/create-note',
         '/retrieve-notes',
-        '/delete-note'
+        '/delete-note',
+        '/update-note'
     ],
 
     'allowed_methods' => ['*'],
