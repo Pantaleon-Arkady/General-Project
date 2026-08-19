@@ -8,6 +8,34 @@ use Illuminate\Support\Facades\Auth;
 
 class NotesController extends Controller
 {
+    public function updateNote(Request $request)
+    {
+        $validated = $request->validate([
+            'noteId' => ['required', 'integer'],
+            'note' => ['required', 'string']
+        ]);
+
+        $userId = Auth::id();
+
+        $note = Notes::findOrFail($validated['noteId']);
+
+        if ($userId !== $note['user_id']) {
+            return response()->json([
+                'stat' => false,
+                'message' => "Unauthorized request, credentials mismatch"
+            ], 401);
+        }
+
+        $note->update([
+            'note' => $validated['note']
+        ]);
+
+        return response()->json([
+            'stat' => true,
+            'note' => $note
+        ], 200);
+    }
+
     public function deleteNote(Request $request)
     {
         $validated = $request->validate([
@@ -52,8 +80,6 @@ class NotesController extends Controller
 
         return response()->json([
             'stat' => true,
-            // 'front' => $frontUser,
-            // 'back' => $userId
             'notes' => $notes,
             'message' => "Notes retrieval: OK!"
         ], 200);
