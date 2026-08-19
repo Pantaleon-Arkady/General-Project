@@ -83,6 +83,7 @@ function NotesList({ notes, refresh }) {
                     onClose={() => setEdit(false)}
                     noteId={noteId}
                     note={note}
+                    refresh={() => refresh()}
                 />
             }
         </>
