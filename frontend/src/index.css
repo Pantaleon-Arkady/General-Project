@@ -71,8 +71,11 @@
         all: unset;
         display: block;
         padding-top: 7px;
-        border-bottom: 3px solid var(--primary);
         height: calc(100% - 10px);
         cursor: pointer;
+    }
+
+    .nav_link_highlight {
+        border-bottom: 4px solid var(--primary);
     }
 }
