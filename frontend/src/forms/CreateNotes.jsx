@@ -4,11 +4,13 @@ import axios from "../api/axios";
 
 function CreateNotes({ show, onClose, refresh }) {
     const [note, setNote] = useState("");
+    const [title, setTitle] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const trimmedNote = note.trim();
+        const trimmedTitle = title.trim();
 
         if (!trimmedNote) {
             return;
@@ -19,6 +21,7 @@ function CreateNotes({ show, onClose, refresh }) {
         }
 
         const noteData = {
+            title: trimmedTitle,
             note: trimmedNote
         }
 
@@ -49,7 +52,17 @@ function CreateNotes({ show, onClose, refresh }) {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group>
                         <Form.Control
+                            className="mb-3"
                             type="text"
+                            placeholder="Enter a title..."
+                            autoFocus
+                            name="title"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                        <Form.Control
+                            as="textarea"
+                            rows={3}
                             placeholder="Type your note..."
                             autoFocus
                             name="note"
