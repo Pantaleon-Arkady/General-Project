@@ -43,9 +43,9 @@
 
 /* NOTES PAGE */
 
-.notes_list_main_div {
+/* .notes_list_main_div {
     background-color: var(--gray);
-}
+} */
 
 @media (min-width: 801px) {
     .app_main_div {

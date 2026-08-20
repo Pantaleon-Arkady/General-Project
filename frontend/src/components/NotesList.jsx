@@ -44,22 +44,22 @@ function NotesList({ notes, refresh }) {
             {notes.map((note, i) => (
                 <div
                     key={i}
-                    className="bg-white rounded mb-2 py-1 px-2 d-flex flex-row justify-content-between"
+                    className="bg-white rounded border-start border-3 border-warning mb-3 py-1 px-2 d-flex flex-row justify-content-between"
                 >
-                    <div>
+                    <div className="align-content-center">
                         {note.note}
                     </div>
 
                     <div>
                         <button
                             onClick={() => handleEdit(note.id, note.note)}
-                            className="btn btn-primary mx-2"
+                            className="btn btn-outline-primary mx-2"
                         >
                             Edit
                         </button>
                         <button
                             onClick={() => handleDeleteWarning(note.id, note.note)}
-                            className="btn btn-danger"
+                            className="btn btn-outline-danger"
                         >
                             Delete
                         </button>

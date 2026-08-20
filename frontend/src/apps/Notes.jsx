@@ -38,15 +38,18 @@ function Notes() {
     return (
         <>
             <div className="">
-                <div className="d-flex justify-content-center p=1">
+                <div className="d-flex flex-row justify-content-center p=1">
+                    <div className="align-content-center mx-5 fs-5">
+                        Notes Page
+                    </div>
                     <button 
-                        className="btn btn-primary m-1"
+                        className="btn btn-primary m-3"
                         onClick={() => setCreate(true)}
                     >
-                        Add Notes
+                        + Add Notes
                     </button>
                 </div>
-                <div className="notes_list_main_div p-2 d-flex flex-column">
+                <div className="notes_list_main_div p-2 d-flex flex-column bg-light">
                     <NotesList
                         notes={notes}
                         refresh={fetchNotes}
