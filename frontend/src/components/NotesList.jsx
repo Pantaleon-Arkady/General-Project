@@ -44,13 +44,13 @@ function NotesList({ notes, refresh }) {
             {notes.map((note, i) => (
                 <div
                     key={i}
-                    className="bg-white rounded border-start border-3 border-warning mb-3 py-1 px-2 d-flex flex-row justify-content-between"
+                    className="notes_list_div bg-white rounded border-start border-3 border-warning mb-3 py-1 px-2 d-flex justify-content-between"
                 >
                     <div className="align-content-center">
-                        {note.note}
+                        <span className="fw-bold">{note.title ? note.title : "Untitled"}</span> - {note.note}
                     </div>
 
-                    <div>
+                    <div className="notes_mod_div">
                         <button
                             onClick={() => handleEdit(note.id, note.note)}
                             className="btn btn-outline-primary mx-2"
