@@ -4,9 +4,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrialsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\TasksController;
+
+// TASKS
+
+Route::post('/delete-task', [TasksController::class, 'deleteTask']);
+Route::get('/retrieve-tasks', [TasksController::class, 'retrieveTasks']);
+Route::post('/create-task', [TasksController::class, 'createTask']);
 
 // NOTES
 
+Route::post('/update-note', [NotesController::class, 'updateNote']);
 Route::post('/delete-note', [NotesController::class, 'deleteNote']);
 Route::get('/retrieve-notes', [NotesController::class, 'retrieveNotes']);
 Route::post('/create-note', [NotesController::class, 'createNote']);

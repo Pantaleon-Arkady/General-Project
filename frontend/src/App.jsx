@@ -28,9 +28,6 @@ function App() {
         <>
             <div className="app_main_div h-100 w-100 bg-white">
                 <div className="h-100 border border-2 rounded bg-light p-3">
-                    <div>
-                        Current Location: {location.pathname}
-                    </div>
                     <Outlet />
                     <Link to={`${isRegister ? "/login" : "/register"}`} className='border rounded'>
                         {isRegister ? "Login ?" : "Register ?"}

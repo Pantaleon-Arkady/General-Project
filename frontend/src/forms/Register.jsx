@@ -45,7 +45,7 @@ function Register() {
     return (
         <>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="auth_form_element">
                     <input 
                         name="username"
                         type="text"

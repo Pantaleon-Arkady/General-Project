@@ -7,7 +7,20 @@
 
 :root {
     --primary: rgb(10, 111, 253);
+    --warning: rgb(255, 202, 43);
+    --success: rgb(20, 116, 71);
+    --danger: rgb(220, 52, 68);
     --gray: rgb(190, 190, 190);
+}
+
+/* AUTH */
+
+.auth_form_element {
+    border: 1px solid var(--gray);
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    flex-flow: column;
 }
 
 /* HOME PAGE */
@@ -43,8 +56,40 @@
 
 /* NOTES PAGE */
 
+.notes_list_div {
+    flex-direction: column;
+}
+
 .notes_list_main_div {
-    background-color: var(--gray);
+    overflow-y: scroll;
+}
+
+.notes_mod_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* TASKS PAGE */
+
+.tasks_list_div {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+
+}
+
+.unfinished_tasks {
+    border: 3px solid var(--danger);
+    color: var(--danger);
+}
+
+.finished_tasks {
+    border: 3px solid var(--success);
+    color: var(--success);
 }
 
 @media (min-width: 801px) {
@@ -71,8 +116,17 @@
         all: unset;
         display: block;
         padding-top: 7px;
-        border-bottom: 3px solid var(--primary);
         height: calc(100% - 10px);
         cursor: pointer;
+    }
+
+    .nav_link_highlight {
+        border-bottom: 4px solid var(--primary);
+    }
+
+    /* NOTES PAGE */
+
+    .notes_list_div {
+        flex-direction: row;
     }
 }

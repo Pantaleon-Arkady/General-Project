@@ -44,22 +44,22 @@ function NotesList({ notes, refresh }) {
             {notes.map((note, i) => (
                 <div
                     key={i}
-                    className="bg-white rounded mb-2 py-1 px-2 d-flex flex-row justify-content-between"
+                    className="notes_list_div bg-white rounded border-start border-3 border-warning mb-3 py-1 px-2 d-flex justify-content-between"
                 >
-                    <div>
-                        {note.note}
+                    <div className="align-content-center">
+                        <span className="fw-bold">{note.title ? note.title : "Untitled"}</span> - {note.note}
                     </div>
 
-                    <div>
+                    <div className="notes_mod_div">
                         <button
                             onClick={() => handleEdit(note.id, note.note)}
-                            className="btn btn-primary mx-2"
+                            className="btn btn-outline-primary mx-2"
                         >
                             Edit
                         </button>
                         <button
                             onClick={() => handleDeleteWarning(note.id, note.note)}
-                            className="btn btn-danger"
+                            className="btn btn-outline-danger"
                         >
                             Delete
                         </button>
@@ -83,6 +83,7 @@ function NotesList({ notes, refresh }) {
                     onClose={() => setEdit(false)}
                     noteId={noteId}
                     note={note}
+                    refresh={() => refresh()}
                 />
             }
         </>

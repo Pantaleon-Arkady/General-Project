@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 
 function NavButtons() {
@@ -8,11 +8,19 @@ function NavButtons() {
         { name: "Demo", path: "/demo" },
     ];
 
+    const location = useLocation();
+
     return (
         <>
-            <div className="nav_desktop">
+            <div className="nav_desktop bg-light px-2">
                 {navItems.map((item, i) => (
-                    <Link className="nav_links" key={i} to={"/home/" + item.path}>
+                    <Link 
+                        className={`nav_links 
+                            ${"/home" + item.path === location.pathname ? "nav_link_highlight" : ""}
+                        `}
+                        key={i} 
+                        to={"/home/" + item.path}
+                    >
                         {item.name}
                     </Link>
                 ))}
