@@ -47,7 +47,7 @@ function Login() {
     return (
         <>
             <div>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="auth_form_element">
                     <input
                         name="namemail"
                         type="text"

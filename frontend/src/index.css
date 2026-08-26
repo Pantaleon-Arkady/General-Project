@@ -10,6 +10,16 @@
     --gray: rgb(190, 190, 190);
 }
 
+/* AUTH */
+
+.auth_form_element {
+    border: 1px solid var(--gray);
+    padding: 10px;
+    width: 50%;
+    display: flex;
+    flex-flow: column;
+}
+
 /* HOME PAGE */
 
 .heading {
