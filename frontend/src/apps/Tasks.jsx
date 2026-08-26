@@ -44,7 +44,7 @@ function Tasks() {
                     </button>
                 </div>
                 <div className="notes_list_main_div p-2 d-flex flex-column bg-light">
-                    {tasks ? <TasksList tasks={tasks}/> : <div>No tasks</div>}
+                    {tasks ? <TasksList tasks={tasks} userId={user?.id}/> : <div>No tasks</div>}
                 </div>
             </div>
             {

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import DeleteWarning from "./DeleteWarning";
+import axios from "../api/axios";
 
-function TasksList({tasks}) {
+function TasksList({tasks, userId}) {
     const [deleteWarning, setDeleteWarning] = useState(false);
     const [taskFocus, setTaskFocus] = useState({});
 
@@ -10,9 +11,23 @@ function TasksList({tasks}) {
         setDeleteWarning(true);
     }
 
-    const handleDelete = () => {
-        console.log("Deleting...");
-        setDeleteWarning(false);
+    const handleDelete = async() => {
+        
+        const deleteData = {
+            task_id: taskFocus.id,
+            user_id: userId
+        }
+
+        try {
+            const res = await axios.post('/delete-task', deleteData );
+
+            if (res.data.stat) {
+                console.log("Delete success");
+                // setDeleteWarning(false);
+            }
+        } catch (err) {
+            console.log(err.response)
+        }
     }
 
     return (
