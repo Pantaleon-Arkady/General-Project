@@ -20,7 +20,12 @@ function Tasks() {
                     Tasks
                 </div>
             </div>
-            {create && <CreateTask />}
+            {
+                create && <CreateTask 
+                    show={() => setCreate(true)} 
+                    onClose={() => setCreate(false)}
+                />
+            }
         </>
     )
 }
