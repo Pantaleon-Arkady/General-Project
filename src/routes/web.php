@@ -8,6 +8,7 @@ use App\Http\Controllers\TasksController;
 
 // TASKS
 
+Route::post('/delete-task', [TasksController::class, 'deleteTask']);
 Route::get('/retrieve-tasks', [TasksController::class, 'retrieveTasks']);
 Route::post('/create-task', [TasksController::class, 'createTask']);
 

@@ -18,16 +18,17 @@ return [
     'paths' => [
         'api/*',
         'sanctum/csrf-cookie',
-        '/handshake',
-        '/register',
-        '/login',
-        '/logout',
-        '/create-note',
-        '/retrieve-notes',
-        '/delete-note',
-        '/update-note',
-        '/create-task',
-        '/retrieve-tasks'
+        'handshake',
+        'register',
+        'login',
+        'logout',
+        'create-note',
+        'retrieve-notes',
+        'delete-note',
+        'update-note',
+        'create-task',
+        'retrieve-tasks',
+        'delete-task'
     ],
 
     'allowed_methods' => ['*'],
