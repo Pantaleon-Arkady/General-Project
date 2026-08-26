@@ -8,6 +8,32 @@ use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
+    public function retrieveTasks(Request $request)
+    {
+        $validated = $request->validate([
+            'user_id' => ['required', 'integer']
+        ]);
+
+        $frontendUser = (int) $validated['user_id'];
+        $backendUser = Auth::id();
+
+        if ($frontendUser !== $backendUser) {
+            return response()->json([
+                'stat' => false,
+                'message' => "Unauthorized action",
+                'front' => $validated['user_id'],
+                'back' => $backendUser
+            ]);
+        }
+
+        $tasks = Tasks::where('user_id', $validated['user_id'])->get();
+
+        return response()->json([
+            'stat' => true,
+            'tasks' => $tasks
+        ]);
+    }
+
     public function createTask(Request $request)
     {
         $validated = $request->validate([
@@ -20,7 +46,9 @@ class TasksController extends Controller
         if ($validated['user_id'] !== $backendUser) {
             return response()->json([
                 'stat' => false,
-                'message' => "Unauthorized action"
+                'message' => "Unauthorized action",
+                'front' => $validated['user_id'],
+                'back' => $backendUser
             ]);
         }
 
@@ -32,7 +60,9 @@ class TasksController extends Controller
 
         return response()->json([
             'stat' => true,
-            'task' => $task->only('task', 'user_id', 'isDone')
+            'task' => $task->only('task', 'user_id', 'isDone'),
+            'front' => $validated['user_id'],
+            'back' => $backendUser
         ]);
     }
 }
