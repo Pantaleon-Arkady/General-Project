@@ -25,7 +25,8 @@ return [
         '/create-note',
         '/retrieve-notes',
         '/delete-note',
-        '/update-note'
+        '/update-note',
+        '/create-task'
     ],
 
     'allowed_methods' => ['*'],

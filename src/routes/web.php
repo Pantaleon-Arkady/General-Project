@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TrialsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\TasksController;
+
+// TASKS
+
+Route::post('/create-task', [TasksController::class, 'createTask']);
 
 // NOTES
 
