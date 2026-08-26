@@ -8,6 +8,35 @@ use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
+    public function deleteTask(Request $request)
+    {
+        $validated = $request->validate([
+            'task_id' => ['required', 'integer'],
+            'user_id' => ['required', 'integer']
+        ]);
+
+        $frontendUser = (int) $validated['user_id'];
+        $backendUser = Auth::id();
+
+        if ($frontendUser !== $backendUser) {
+            return response()->json([
+                'stat' => false,
+                'message' => "Unauthorized action",
+                'front' => $validated['user_id'],
+                'back' => $backendUser
+            ]);
+        }
+
+        $task = Tasks::findOrFail($validated['task_id']);
+
+        $task->delete();
+
+        return response()->json([
+            'stat' => true,
+            'message' => 'Task deleted successfully'
+        ]);
+    }
+
     public function retrieveTasks(Request $request)
     {
         $validated = $request->validate([
