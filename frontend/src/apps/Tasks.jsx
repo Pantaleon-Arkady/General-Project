@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import CreateTask from "../forms/CreateTask";
 import axios from "../api/axios";
 import { useAuth } from "../context/AuthContext";
+import TasksList from "../components/TasksList";
 
 function Tasks() {
     const [create, setCreate] = useState(false);
@@ -43,7 +44,7 @@ function Tasks() {
                     </button>
                 </div>
                 <div className="notes_list_main_div p-2 d-flex flex-column bg-light">
-                    {tasks ? "Tasks retrieved" : "Task not retrieved"}
+                    {tasks ? <TasksList tasks={tasks}/> : <div>No tasks</div>}
                 </div>
             </div>
             {
