@@ -73,6 +73,8 @@ function TasksList({tasks, userId}) {
             {editComponent &&
             <EditTask
                 task={taskFocus}
+                show={() => setEditComponent(true)}
+                onClose={() => setEditComponent(false)}
             />}
         </>
     )

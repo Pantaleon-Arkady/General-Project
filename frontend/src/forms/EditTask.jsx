@@ -1,11 +1,48 @@
-function EditTask({ task }) {
+import { useState } from "react";
+import { Modal, Form, Button } from "react-bootstrap";
+
+function EditTask({ task, show, onClose }) {
+    const [taskContent, setTaskContent] = useState(task.task);
+    const [taskStatus, setTaskStatus] = useState(task.isDone);
+
+    const handleSubmit = () => {
+        console.log("Updating");
+    }
 
     return (
-        <>
-            <div>
-                Editing Task {task.id}
-            </div>
-        </>
+        <Modal centered show={show} onHide={onClose}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Editing Task
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group>
+                        <Form.Control
+                            type="text"
+                            name="task"
+                            value={taskContent}
+                            onChange={(e) => setTaskContent(e.target.value)}
+                        />
+                    </Form.Group>
+                    <div className="border-top border-2 border-secondary my-2 p-2 d-flex flex-row justify-content-around">
+                        <Button
+                            onClick={onClose}
+                            variant="secondary"
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="primary"
+                        >
+                            Update
+                        </Button>
+                    </div>
+                </Form>
+            </Modal.Body>
+        </Modal>
     )
 }
 
