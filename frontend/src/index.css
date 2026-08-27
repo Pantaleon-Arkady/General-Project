@@ -113,7 +113,7 @@
     margin-top: 15px;
     border-radius: 10px;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     justify-content: space-between;
 
 }
@@ -163,6 +163,12 @@
     /* NOTES PAGE */
 
     .notes_list_div {
+        flex-direction: row;
+    }
+
+    /* TASKS PAGE */
+
+    .tasks_list_div {
         flex-direction: row;
     }
 }

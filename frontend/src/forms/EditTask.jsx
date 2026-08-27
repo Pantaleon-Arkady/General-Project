@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 
@@ -5,17 +6,42 @@ function EditTask({ task, show, onClose }) {
     const [taskContent, setTaskContent] = useState(task.task);
     const [taskStatus, setTaskStatus] = useState(task.isDone);
 
+    const oldContent = task.task;
+    const oldStatus = task.isDone;
+
     const handleStatusChange = (e) => {
         setTaskStatus(e.target.value === "true");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         console.log("Updating");
         console.log("Task: ");
         console.log(taskContent);
         console.log("Status: ");
         console.log(taskStatus);
+
+        const updateTaskData = {
+            task_id: task.id,
+            task: taskContent,
+            status: taskStatus
+        }
+
+        if (taskContent === oldContent && taskStatus === oldStatus) {
+            console.log("NO changes made")
+            return
+        }
+
+        try {
+            const res = await axios.post('/update-task', updateTaskData)
+
+            if (res.data.stat) {
+                console.log(res.data.task);
+                console.log("Update Success");
+            }
+        } catch (err) {
+            console.log(err.response)
+        }
     }
 
     return (
