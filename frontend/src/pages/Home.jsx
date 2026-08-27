@@ -39,7 +39,9 @@ function Home() {
                             </button>
                         </div>
                     </div>
-                    <Outlet context={{ user }}/>
+                    <div className="home_page_content">
+                        <Outlet context={{ user }}/>
+                    </div>
                 </div>
             </div>
         </>
