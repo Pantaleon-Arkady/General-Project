@@ -29,7 +29,7 @@ function Register() {
         try {
             await axios.get("/sanctum/csrf-cookie");
             const res = await axios.post('/register', registrationData);
-            
+
             if (res.data.stat) {
                 console.log(res.data.message);
 
@@ -44,38 +44,39 @@ function Register() {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit} className="auth_form_element">
-                    <input 
-                        name="username"
-                        type="text"
-                        placeholder="Create your username..."
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
+            <form onSubmit={handleSubmit} className="auth_form_element">
+                <input
+                    name="username"
+                    type="text"
+                    placeholder="Create your username..."
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    className="auth_input_elements"
+                />
 
-                    <input
-                        name="email"
-                        type="email"
-                        placeholder="Enter your email..."
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
+                <input
+                    name="email"
+                    type="email"
+                    placeholder="Enter your email..."
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="auth_input_elements"
+                />
 
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Create a password..."
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Create a password..."
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="auth_input_elements"
+                />
 
-                    <br />
-                    <button className="btn btn-success">
-                        Register
-                    </button>
-                </form>
-            </div>
+                <br />
+                <button className="btn btn-success">
+                    Register
+                </button>
+            </form>
         </>
     )
 }

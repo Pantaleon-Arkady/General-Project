@@ -46,28 +46,28 @@ function Login() {
 
     return (
         <>
-            <div>
-                <form onSubmit={handleSubmit} className="auth_form_element">
-                    <input
-                        name="namemail"
-                        type="text"
-                        placeholder="Email or username..."
-                        value={namemail}
-                        onChange={(e) => setNamemail(e.target.value)}
-                    />
-                    <input
-                        name="password"
-                        type="password"
-                        placeholder="Enter your password..."
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+            <form onSubmit={handleSubmit} className="auth_form_element">
+                <input
+                    name="namemail"
+                    type="text"
+                    placeholder="Email or username..."
+                    value={namemail}
+                    onChange={(e) => setNamemail(e.target.value)}
+                    className="auth_input_elements"
+                />
+                <input
+                    name="password"
+                    type="password"
+                    placeholder="Enter your password..."
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="auth_input_elements"
+                />
 
-                    <button className="btn btn-success">
-                        Log in
-                    </button>
-                </form>
-            </div>
+                <button className="btn btn-success">
+                    Log in
+                </button>
+            </form>
         </>
     )
 }

@@ -16,11 +16,19 @@
 /* AUTH */
 
 .auth_form_element {
+    width: 100%;
     border: 1px solid var(--gray);
     padding: 10px;
     width: 50%;
     display: flex;
     flex-flow: column;
+}
+
+.auth_input_elements {
+    padding: 5px 10px;
+    margin: 15px 0px;
+    border-radius: 5px;
+    border: 1px solid black;
 }
 
 /* HOME PAGE */
@@ -72,6 +80,12 @@
 }
 
 /* APP PAGES */
+
+.app_main_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .app_page {
     height: 100%;
