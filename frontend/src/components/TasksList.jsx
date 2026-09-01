@@ -1,10 +1,17 @@
 import { useState } from "react";
 import DeleteWarning from "./DeleteWarning";
+import EditTask from "../forms/EditTask";
 import axios from "../api/axios";
 
 function TasksList({tasks, userId}) {
     const [deleteWarning, setDeleteWarning] = useState(false);
+    const [editComponent, setEditComponent] = useState(false);
     const [taskFocus, setTaskFocus] = useState({});
+
+    const handleEditComponent = (task) => {
+        setTaskFocus(task);
+        setEditComponent(true);
+    }
 
     const handleDeleteWarning = (task) => {
         setTaskFocus(task);
@@ -41,7 +48,13 @@ function TasksList({tasks, userId}) {
                         <span>{task.task}</span>
                         <div>
                             <button
-                                className="btn btn-danger"
+                                className="btn btn-outline-primary border-2 me-2"
+                                onClick={() => handleEditComponent(task)}
+                            >
+                                Edit
+                            </button>
+                            <button
+                                className="btn btn-outline-danger border-2"
                                 onClick={() => handleDeleteWarning(task)}
                             >
                                 Delete
@@ -56,6 +69,12 @@ function TasksList({tasks, userId}) {
                 onClose={() => setDeleteWarning(false)}
                 deleteName={taskFocus.task}
                 onDelete={handleDelete}
+            />}
+            {editComponent &&
+            <EditTask
+                task={taskFocus}
+                show={() => setEditComponent(true)}
+                onClose={() => setEditComponent(false)}
             />}
         </>
     )

@@ -28,7 +28,8 @@ return [
         'update-note',
         'create-task',
         'retrieve-tasks',
-        'delete-task'
+        'delete-task',
+        'update-task'
     ],
 
     'allowed_methods' => ['*'],

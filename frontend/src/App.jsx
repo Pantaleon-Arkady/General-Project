@@ -27,7 +27,7 @@ function App() {
     return (
         <>
             <div className="app_main_div h-100 w-100 bg-white">
-                <div className="h-100 border border-2 rounded bg-light p-3">
+                <div className="w-100 h-100 border border-2 rounded bg-light p-3 d-flex flex-column justify-content-center align-items-center">
                     <Outlet />
                     <Link to={`${isRegister ? "/login" : "/register"}`} className='border rounded'>
                         {isRegister ? "Login ?" : "Register ?"}

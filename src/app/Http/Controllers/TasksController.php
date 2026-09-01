@@ -8,6 +8,37 @@ use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
+    public function updateTask(Request $request)
+    {
+        $validated = $request->validate([
+            'task_id' => ['required', 'integer'],
+            'task' => ['required', 'string'],
+            'status' => ['required', 'bool']
+        ]);
+
+        $task = Tasks::findOrFail($validated['task_id']);
+
+        $user = Auth::id();
+
+        if ($task->user_id !== $user) {
+            return response()->json([
+                'stat' => false,
+                'message' => "Unauthorized action"
+            ]);
+        }
+
+        $task->update([
+            'task' => $validated['task'],
+            'isDone' => $validated['status']
+        ]);
+
+        return response()->json([
+            'stat' => true,
+            'task' => $task->only('task', 'isDone', 'user_id'),
+            'message' => "Update success"
+        ]);
+    }
+
     public function deleteTask(Request $request)
     {
         $validated = $request->validate([

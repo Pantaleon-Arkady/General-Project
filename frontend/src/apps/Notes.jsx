@@ -37,8 +37,9 @@ function Notes() {
 
     return (
         <>
-            <div className="">
-                <div className="d-flex flex-row justify-content-center p=1">
+            <div className="app_page">
+
+                <div className="app_header d-flex flex-row justify-content-center p=1">
                     <div className="align-content-center mx-5 fs-5">
                         Notes Page
                     </div>
@@ -49,12 +50,14 @@ function Notes() {
                         + Add Notes
                     </button>
                 </div>
-                <div className="notes_list_main_div p-2 d-flex flex-column bg-light">
+
+                <div className="app_list_main_div p-2 d-flex flex-column bg-light">
                     <NotesList
                         notes={notes}
                         refresh={fetchNotes}
                     />
                 </div>
+
             </div>
 
             <CreateNotes

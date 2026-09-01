@@ -33,8 +33,9 @@ function Tasks() {
 
     return (
         <>
-            <div className="d-flex flex-column">
-                <div className="p-1 d-flex flex-row justify-content-around">
+            <div className="app_page">
+
+                <div className="app_header p-1 d-flex flex-row justify-content-around">
                     <div>Task App</div>
                     <button
                         onClick={() => setCreate(true)}
@@ -43,9 +44,11 @@ function Tasks() {
                         + Add Task
                     </button>
                 </div>
-                <div className="notes_list_main_div p-2 d-flex flex-column bg-light">
+
+                <div className="app_list_main_div p-2 d-flex flex-column bg-light">
                     {tasks ? <TasksList tasks={tasks} userId={user?.id}/> : <div>No tasks</div>}
                 </div>
+
             </div>
             {
                 create && <CreateTask 
