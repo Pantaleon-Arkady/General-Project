@@ -1,4 +1,4 @@
-function PersonalData() {
+function PersonalData({ onClose }) {
 
     const data = {
         "tag":"#LYUVV2J0L","name":"ZECHS",
@@ -195,11 +195,21 @@ function PersonalData() {
             {"name":"Ice Block Spell","level":1,"maxLevel":6,"village":"home"}
         ]}
 
+        console.log(data);
+
     return (
         <>
-            <div>
+            <div
+                className="border border-black personal_data_main_div"
+            >
                 Personal Data:<br />
-                {String(data)}
+                {JSON.stringify(data)}
+                <button
+                    className="btn btn-warning"
+                    onClick={onClose}
+                >
+                    Close
+                </button>
             </div>
         </>
     )
