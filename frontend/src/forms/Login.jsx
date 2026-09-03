@@ -2,6 +2,7 @@ import axios from "../api/axios";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { loginService } from "../services/AuthService";
 
 function Login() {
     const [namemail, setNamemail] = useState("");
@@ -25,23 +26,30 @@ function Login() {
         console.log("loginData: ");
         console.log(loginData);
 
-        try {
-            await axios.get("/sanctum/csrf-cookie");
-            const res = await axios.post('/login', loginData);
+        const res = await loginService(loginData);
 
-            if (res.data.stat) {
-                console.log("Stat true");
-                console.log(res.data.message);
-
-                login(res.data.user);
-                navigate("/home");
-            } else {
-                console.log("stat false but not catched error");
-            }
-        } catch (error) {
-            console.log(error.response);
-            console.log(error.response.statusText + ": " + error.response.data.message);
+        if (res.data.stat) {
+            console.log("login" + res.data.user);
+            login(res.data.user);
         }
+
+        // try {
+        //     await axios.get("/sanctum/csrf-cookie");
+        //     const res = await axios.post('/login', loginData);
+
+        //     if (res.data.stat) {
+        //         console.log("Stat true");
+        //         console.log(res.data.message);
+
+        //         login(res.data.user);
+        //         navigate("/home");
+        //     } else {
+        //         console.log("stat false but not catched error");
+        //     }
+        // } catch (error) {
+        //     console.log(error.response);
+        //     console.log(error.response.statusText + ": " + error.response.data.message);
+        // }
     }
 
     return (
