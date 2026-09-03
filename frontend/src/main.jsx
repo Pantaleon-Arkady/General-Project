@@ -12,6 +12,7 @@ import Login from "./forms/Login.jsx";
 import Home from "./pages/Home.jsx";
 import Notes from './apps/Notes.jsx';
 import Tasks from './apps/Tasks.jsx';
+import Demo from './apps/Demo.jsx';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')).render(
                         <Route index element={<Notes />} />
                         <Route path='tasks' element={<Tasks />}/>
                         <Route path='notes' element={<Notes />} />
+                        <Route path='demo' element={<Demo />} />
                     </Route>
 
                     <Route path='/trials' element={<TrialComponent />} />
