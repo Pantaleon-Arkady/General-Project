@@ -4,15 +4,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import NavButtons from "../components/NavButtons";
 
 function Home() {
-    const { user, logout } = useAuth();
-
+    const { user, loading, logout } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user) {
-            navigate("/")
+        if (!loading && !user) {
+            navigate("/");
         }
-    }, []);
+    }, [user, loading, navigate]);
 
     const handleLogout = async () => {
         await logout();
