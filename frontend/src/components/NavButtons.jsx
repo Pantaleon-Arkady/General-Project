@@ -6,6 +6,7 @@ function NavButtons() {
         { name: "Notes", path: "/notes" },
         { name: "Tasks", path: "/tasks" },
         { name: "Demo", path: "/demo" },
+        { name: "Date", path: "/date" }
     ];
 
     const location = useLocation();

@@ -2,6 +2,7 @@ import axios from "../api/axios";
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { register } from "../services/AuthService";
 
 function Register() {
     const [username, setUsername] = useState("");
@@ -26,19 +27,13 @@ function Register() {
         console.log("Email: " + email);
         console.log("Password: " + password);
 
-        try {
-            await axios.get("/sanctum/csrf-cookie");
-            const res = await axios.post('/register', registrationData);
+        const res = await register(registrationData);
 
-            if (res.data.stat) {
-                console.log(res.data.message);
+        console.log(res);
 
-                login(res.data.user);
-                navigate("/home");
-            }
-
-        } catch (err) {
-            console.log(err.response);
+        if (res.data.stat) {
+            console.log("Res Stat is true");
+            login(res.data.user);
         }
     }
 
