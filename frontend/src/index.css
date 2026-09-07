@@ -167,6 +167,10 @@
     height: 100%;
 }
 
+.component_none {
+    display: none;
+}
+
 @media (min-width: 801px) {
     .app_main_div {
         padding: 15px;
@@ -215,6 +219,10 @@
 
     .date_app_content {
         flex-flow: row;
+    }
+
+    .component_none {
+        display: flex;
     }
 
     .date_separation_wrapper {

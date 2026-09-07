@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 function DateComponent() {
+    const [component, setComponent] = useState("date");
 
     const date = new Date(); 
 
@@ -14,6 +17,14 @@ function DateComponent() {
 
     const dateDayIndex = daysOfTheWeek.indexOf(dateDay);
 
+    const handleComponent = () => {
+        if (component === "date") {
+            setComponent("temporal")
+        } else {
+            setComponent("date");
+        }
+    }
+
     return (
         <>
             <div
@@ -22,11 +33,16 @@ function DateComponent() {
                 <div
                     className="app_header"
                 >
-                    Header
+                    <button
+                        className="btn btn-primary"
+                        onClick={() => handleComponent()}
+                    >
+                        Switch: {component}
+                    </button>
                 </div>
                 <div className="date_app_content">
                     <div
-                        className="date_separation_wrapper"
+                        className={`date_separation_wrapper ${component === "temporal" ? "component_none" : ""}`}
                     >
                         <div className="date_date_div">
                             <div>Date App Component</div>
@@ -38,10 +54,10 @@ function DateComponent() {
                         </div>
                     </div>
                     <div
-                        className="date_separation_wrapper"
+                        className={`date_separation_wrapper ${component === "date" ? "component_none" : ""}`}
                     >
                         <div className="date_temporal_div">
-                            <div>Temporal</div>
+                            <div>Temporal The quick brown fox jumped over the lazy dog. Lorem ipsum dolor.</div>
                         </div>
                     </div>
                 </div>
