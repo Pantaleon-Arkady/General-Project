@@ -16,12 +16,34 @@ function DateComponent() {
 
     return (
         <>
-            <div>
-                Date App Component
-                <div>
-                    basic new current date: {String(date)} - date only: {dateOnly}<br />
-                    month index: {dateMonth} - month name: {dateMonthName}<br />
-                    date day name: {dateDay} - index: {dateDayIndex}
+            <div
+                className="app_page bg-secondary"
+            >
+                <div
+                    className="app_header"
+                >
+                    Header
+                </div>
+                <div className="date_app_content">
+                    <div
+                        className="date_separation_wrapper"
+                    >
+                        <div className="date_date_div">
+                            <div>Date App Component</div>
+                            <div>
+                                basic new current date: {String(date)} - date only: {dateOnly}<br />
+                                month index: {dateMonth} - month name: {dateMonthName}<br />
+                                date day name: {dateDay} - index: {dateDayIndex}
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        className="date_separation_wrapper"
+                    >
+                        <div className="date_temporal_div">
+                            <div>Temporal</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

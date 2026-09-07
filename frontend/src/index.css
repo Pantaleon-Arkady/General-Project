@@ -81,12 +81,6 @@
 
 /* APP PAGES */
 
-.app_main_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .app_page {
     height: 100%;
     display: flex;
@@ -148,6 +142,31 @@
     overflow-y: auto;
 }
 
+/* DATE PAGE */
+
+.date_app_content {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.date_separation_wrapper {
+    height: 100%;
+    padding: 15px;
+}
+
+.date_date_div {
+    background-color: white;
+    height: 100%;
+}
+
+.date_temporal_div {
+    background-color: white;
+    height: 100%;
+}
+
 @media (min-width: 801px) {
     .app_main_div {
         padding: 15px;
@@ -190,5 +209,15 @@
 
     .tasks_list_div {
         flex-direction: row;
+    }
+
+    /* DATE PAGE */
+
+    .date_app_content {
+        flex-flow: row;
+    }
+
+    .date_separation_wrapper {
+        width: 50%;
     }
 }
