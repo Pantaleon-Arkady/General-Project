@@ -29,7 +29,8 @@ return [
         'create-task',
         'retrieve-tasks',
         'delete-task',
-        'update-task'
+        'update-task',
+        'class-test'
     ],
 
     'allowed_methods' => ['*'],

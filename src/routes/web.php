@@ -5,6 +5,15 @@ use App\Http\Controllers\TrialsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TasksController;
+use App\BookFactory;
+
+// CLASS
+
+Route::get('/class-test', function () {
+    $book = new BookFactory();
+    
+    return $book;
+});
 
 // TASKS
 
