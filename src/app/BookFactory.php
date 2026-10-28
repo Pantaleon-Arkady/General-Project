@@ -2,18 +2,23 @@
 
 namespace App;
 
-class BookFactory 
-{
+class Book {
 
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
+    private $bookName;
+    private $bookAuthor;
+
+    public function __construct($name, $author) {
+        $this->bookName = $name;
+        $this->bookAuthor = $author;
     }
 
-    
+    public function getBookInfo() {
+        return $this->bookName . ' - ' . $this->bookAuthor . '<br />';
+    }
 }
 
-echo "testing";
+class BookFactory {
+    public static function create($name, $author) {
+        return new Book($name, $author);
+    }
+}

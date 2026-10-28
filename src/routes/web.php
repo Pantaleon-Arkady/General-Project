@@ -10,9 +10,9 @@ use App\BookFactory;
 // CLASS
 
 Route::get('/class-test', function () {
-    $book = new BookFactory();
+    $book = BookFactory::create("The Old Man and the Sea", "Ernest Hemingway");
     
-    return $book;
+    return $book->getBookInfo();
 });
 
 // TASKS
