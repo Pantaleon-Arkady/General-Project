@@ -14,6 +14,7 @@ import Notes from './apps/Notes.jsx';
 import Tasks from './apps/Tasks.jsx';
 import Demo from './apps/Demo.jsx';
 import DateComponent from './apps/Date.jsx';
+import Class from './apps/Class.jsx';
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')).render(
                         <Route path='notes' element={<Notes />} />
                         <Route path='demo' element={<Demo />} />
                         <Route path='date' element={<DateComponent />} />
+                        <Route path='class' element={<Class />} />
                     </Route>
 
                     <Route path='/trials' element={<TrialComponent />} />
