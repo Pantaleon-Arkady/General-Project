@@ -13,7 +13,7 @@ class Book {
     }
 
     public function getBookInfo() {
-        return $this->bookName . ' - ' . $this->bookAuthor . '<br />';
+        return $this->bookName . ' - ' . $this->bookAuthor;
     }
 }
 
