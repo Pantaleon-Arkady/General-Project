@@ -30,7 +30,8 @@ return [
         'retrieve-tasks',
         'delete-task',
         'update-task',
-        'class-test'
+        'class-test',
+        'create-book'
     ],
 
     'allowed_methods' => ['*'],

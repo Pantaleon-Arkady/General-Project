@@ -4,13 +4,25 @@ import axios from "../api/axios";
 function Class() {
     const [bookName, setBookName] = useState("");
     const [bookAuthor, setBookAuthor] = useState("");
+    const [book, setBook] = useState();
 
-    const handleBook = (e) => {
+    const handleBook = async(e) => {
         e.preventDefault();
 
-        console.log("creating book info");
-        console.log("Book Title: " + bookName);
-        console.log("Book Author: " + bookAuthor);
+        const bookData = {
+            book_name: bookName,
+            book_author: bookAuthor
+        }
+
+        try {
+            const res = await axios.post('/create-book', bookData);
+
+            if (res.data.stat) {
+                setBook(JSON.stringify(res.data.book));
+            }
+        } catch (err) {
+            console.log(err.response);
+        }
     }
 
     return (
@@ -38,6 +50,9 @@ function Class() {
                         Sumbit
                     </button>
                 </form>
+                <div>
+                    Book: {book ? book : "No book yet"}
+                </div>
             </div>
         </>
     )
