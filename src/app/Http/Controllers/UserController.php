@@ -7,6 +7,7 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterEventRequest;
 
 class UserController extends Controller
 {
@@ -66,37 +67,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function Register(Request $request)
+    public function Register(RegisterEventRequest $request)
     {
-        $validated = $request->validate([
-            'username' => [
-                'required',
-                'string',
-                'min:4',
-                'max:30',
-                'alpha_dash',
-                'unique:users,name'
-            ],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users,email'
-            ],
-            'password' => [
-                'required',
-                Password::min(8)
-                    ->mixedCase()
-                    ->numbers()
-                    ->symbols()
-            ]
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $validated['username'],
             'email' => $validated['email'],
-            'password' => $validated['password']
+            'password' => Hash::make($validated['password'])
         ]);
 
         Auth::login($user);
