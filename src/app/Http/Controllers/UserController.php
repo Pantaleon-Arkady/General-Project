@@ -35,17 +35,10 @@ class UserController extends Controller
             ? User::where('email', $loginInput)->first()
             : User::where('name', $loginInput)->first();
 
-        if (!$user) {
+        if (!$user || !Hash::check($validated['password'], $user->password)) {
             return response()->json([
                 'stat' => false,
-                "message" => "Email / username cannot be found."
-            ], 401);
-        }
-
-        if (!Hash::check($validated['password'], $user->password)) {
-            return response()->json([
-                'stat' => false,
-                'message' => "Password does not match."
+                'message' => 'Invalid username/email or password.'
             ], 401);
         }
 
