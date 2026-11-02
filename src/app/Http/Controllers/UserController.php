@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterEventRequest;
+use App\Http\Requests\LoginEventRequest;
 
 class UserController extends Controller
 {
@@ -24,18 +25,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function Login(Request $request)
+    public function Login(LoginEventRequest $request)
     {
-        $validated = $request->validate([
-            'namemail' => [
-                'required',
-                'string'
-            ],
-            'password' => [
-                'required',
-                'string'
-            ]
-        ]);
+        $validated = $request->validated();
 
         $loginInput = $validated['namemail'];
 
