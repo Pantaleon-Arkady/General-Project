@@ -7,6 +7,8 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegisterEventRequest;
+use App\Http\Requests\LoginEventRequest;
 
 class UserController extends Controller
 {
@@ -23,18 +25,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function Login(Request $request)
+    public function Login(LoginEventRequest $request)
     {
-        $validated = $request->validate([
-            'namemail' => [
-                'required',
-                'string'
-            ],
-            'password' => [
-                'required',
-                'string'
-            ]
-        ]);
+        $validated = $request->validated();
 
         $loginInput = $validated['namemail'];
 
@@ -42,17 +35,10 @@ class UserController extends Controller
             ? User::where('email', $loginInput)->first()
             : User::where('name', $loginInput)->first();
 
-        if (!$user) {
+        if (!$user || !Hash::check($validated['password'], $user->password)) {
             return response()->json([
                 'stat' => false,
-                "message" => "Email / username cannot be found."
-            ], 401);
-        }
-
-        if (!Hash::check($validated['password'], $user->password)) {
-            return response()->json([
-                'stat' => false,
-                'message' => "Password does not match."
+                'message' => 'Invalid username/email or password.'
             ], 401);
         }
 
@@ -66,37 +52,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function Register(Request $request)
+    public function Register(RegisterEventRequest $request)
     {
-        $validated = $request->validate([
-            'username' => [
-                'required',
-                'string',
-                'min:4',
-                'max:30',
-                'alpha_dash',
-                'unique:users,name'
-            ],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users,email'
-            ],
-            'password' => [
-                'required',
-                Password::min(8)
-                    ->mixedCase()
-                    ->numbers()
-                    ->symbols()
-            ]
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $validated['username'],
             'email' => $validated['email'],
-            'password' => $validated['password']
+            'password' => Hash::make($validated['password'])
         ]);
 
         Auth::login($user);

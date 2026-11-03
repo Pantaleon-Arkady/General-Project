@@ -5,6 +5,17 @@ use App\Http\Controllers\TrialsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\NotesController;
 use App\Http\Controllers\TasksController;
+use App\BookFactory;
+use App\Http\Controllers\BookController;
+
+// CLASS
+
+Route::post('/create-book', [BookController::class, 'createBook']);
+Route::get('/class-test', function () {
+    $book = BookFactory::create("The Old Man and the Sea", "Ernest Hemingway");
+    
+    return $book->getBookInfo();
+});
 
 // TASKS
 
